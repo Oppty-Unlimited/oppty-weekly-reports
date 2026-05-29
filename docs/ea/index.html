@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Equity Advisors - Weekly Project Communication</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ec;--surface:#ffffff;--raised:#faf8f4;--border:#e2ddd6;--border-s:#d0cbc3;--ink:#1a1714;--ink-m:#6b6560;--ink-f:#a8a39d;--accent:#c8692a;--accent-l:#f0e0d0;--accent-d:#8a4a1e;--green:#3a7a5c;--green-l:#d4ede3;--amber:#b07820;--amber-l:#f5e8ce;--red:#b54040;--red-l:#f5dada;--blue:#2a5c8a;--blue-l:#d4e4f5;--purple:#6a3a8a;--purple-l:#ead4f5;--sf:#0176d3;--shadow:0 2px 12px rgba(26,23,20,.07);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:14px;}
+.page{max-width:900px;margin:0 auto;padding:44px 28px 80px;}
+.header{border-bottom:2px solid var(--ink);padding-bottom:24px;margin-bottom:32px;}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.header h1{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;line-height:1.1;margin-bottom:4px;}
+.header-sub{font-size:13px;color:var(--ink-m);margin-bottom:16px;}
+.pills{display:flex;gap:8px;flex-wrap:wrap;}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;background:var(--surface);border:1px solid var(--border-s);border-radius:20px;padding:3px 10px;color:var(--ink-m);}
+.dot{width:5px;height:5px;border-radius:50%;display:inline-block;flex-shrink:0;}
+.dot-g{background:var(--green);}.dot-a{background:var(--amber);}.dot-r{background:var(--red);}
+.slabel{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-f);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.slabel::after{content:'';flex:1;height:1px;background:var(--border);}
+.slabel.acc{color:var(--accent);}.slabel.blue{color:var(--blue);}.slabel.red{color:var(--red);}
+.section{margin-bottom:40px;}
+.section h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:14px;}
+.focus-wrap{background:var(--ink);border-radius:12px;padding:24px 28px;margin-bottom:40px;}
+.focus-wrap h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:4px;}
+.fw-week{font-size:11px;color:rgba(255,255,255,.45);margin-bottom:18px;letter-spacing:.05em;}
+.itbl{width:100%;border-collapse:collapse;}
+.itbl th{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:6px 10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1);}
+.itbl td{padding:9px 10px;font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle;}
+.itbl tr:last-child td{border-bottom:none;}
+.itbl tr.blocker{border-left:2px solid var(--red);}
+.itbl tr.blocker td{background:rgba(181,64,64,.07);}
+.itbl a{color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);}
+.due-over{color:#f08080;font-weight:600;font-family:'JetBrains Mono',monospace;font-size:11px;}
+.due-none{color:rgba(255,255,255,.25);font-size:11px;font-style:italic;}
+.badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap;display:inline-block;}
+.b-red{background:var(--red-l);color:var(--red);}.b-amber{background:var(--amber-l);color:var(--amber);}.b-blue{background:var(--blue-l);color:var(--blue);}.b-muted{background:#ece9e3;color:var(--ink-m);}.b-pend{background:#ead4f5;color:var(--purple);}
+.db-amber{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(176,120,32,.3);color:#f5c96a;}
+.db-blue{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(42,92,138,.3);color:#78b4f0;}
+.db-muted{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);}
+.case-section{margin-bottom:20px;}
+.case-section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.case-section-hdr h3{font-size:13px;font-weight:600;color:var(--ink);}
+.tbl{width:100%;border-collapse:collapse;background:var(--surface);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:14px;}
+.tbl th{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-f);background:var(--raised);padding:8px 13px;text-align:left;border-bottom:1px solid var(--border);}
+.tbl td{padding:10px 13px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--ink-m);}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:nth-child(even) td{background:#faf9f6;}
+.cn{font-weight:600;color:var(--ink);font-size:13px;}
+.mono{font-family:'JetBrains Mono',monospace;font-size:12px;}
+.nv{color:var(--ink-f);}
+.res-warn{color:var(--red);font-weight:600;}
+.res-val{color:var(--ink);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:12.5px;}
+a.sf-link{color:var(--sf);text-decoration:none;border-bottom:1px solid rgba(1,118,211,.2);font-size:12.5px;}
+.icard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-bottom:12px;box-shadow:var(--shadow);}
+.icard-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+.icard-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;margin-bottom:2px;}
+.icard-title a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border-s);}
+.icard-meta{font-size:11.5px;color:var(--ink-m);}
+.icard-lbl{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;}
+.icard-lbl.muted{color:var(--ink-f);}.icard-lbl.green{color:var(--green);}
+.icard-div{height:1px;background:var(--border);margin:10px 0;}
+.blist{list-style:none;padding:0;}
+.blist li{padding:3px 0 3px 14px;position:relative;font-size:13px;color:var(--ink-m);line-height:1.6;}
+.blist li::before{content:"--";position:absolute;left:0;color:var(--accent);font-weight:700;}
+.blist li ul{margin-top:3px;padding-left:12px;}
+.blist li ul li::before{color:var(--ink-f);}
+.ksi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:6px;}
+.ksi-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;box-shadow:var(--shadow);}
+.ksi-name{font-size:11px;color:var(--ink-m);margin-bottom:10px;line-height:1.4;}
+.ksi-name a{color:var(--ink-m);text-decoration:none;border-bottom:1px solid var(--border);}
+.ksi-annual{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:var(--accent);margin-bottom:8px;line-height:1;}
+.ksi-row{display:flex;gap:16px;border-top:1px solid var(--border);padding-top:8px;}
+.ksi-sub{font-size:10.5px;color:var(--ink-m);}
+.ksi-sub span{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink);font-weight:600;}
+.igl{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:6px;display:inline-block;margin-bottom:8px;}
+.igl-a{background:var(--accent-l);color:var(--accent-d);}.igl-p{background:var(--blue-l);color:var(--blue);}.igl-r{background:var(--green-l);color:var(--green);}
+.ind-group{margin-bottom:22px;}
+.sub-row td{background:#f8f6f2 !important;font-size:12px;border-top:1px dashed var(--border) !important;}
+.sub-row td:first-child{padding-left:26px;color:var(--ink-m);font-style:italic;}
+.sub-lbl td{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-f);padding:4px 13px 4px 26px;background:#f0ede8 !important;border-top:1px solid var(--border) !important;}
+.gap-section{margin-bottom:22px;}
+.gap-title{font-weight:600;font-size:13px;color:var(--ink);margin-bottom:8px;}
+.s-ok{color:var(--green);font-weight:600;font-size:12px;}
+.s-miss{color:var(--red);font-weight:600;font-size:12px;}
+.footer{border-top:1px solid var(--border);padding-top:20px;margin-top:48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.footer-brand{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-f);font-weight:600;}
+.footer-note{font-size:11px;color:var(--ink-f);font-family:'JetBrains Mono',monospace;}
+@media(max-width:600px){.ksi-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="header">
+  <div class="eyebrow">Weekly Project Communication &middot; Oppty</div>
+  <h1>Equity Advisors</h1>
+  <div class="header-sub">Week of May 26, 2026 &middot; Project: In Progress</div>
+  <div class="pills">
+    <span class="pill"><span class="dot dot-a"></span> 3 Active Epics &middot; 3 Open Cases</span>
+    <span class="pill"><span class="dot dot-r"></span> 1 Overdue Epic</span>
+    <span class="pill"><span class="dot dot-r"></span> 2 Active Blockers</span>
+    <span class="pill"><span class="dot dot-a"></span> 0 Pending Acceptance</span>
+  </div>
+</header>
+
+<div class="focus-wrap">
+  <h3>Week of May 26, 2026 &mdash; Focus &amp; Priorities</h3>
+  <div class="fw-week">Project Insights &middot; Active &middot; Sorted by Due Date</div>
+  <table class="itbl">
+    <thead><tr><th style="width:27%">Insight</th><th>Type</th><th>Assignee</th><th>Related To</th><th>Due</th><th>Status</th><th>Blocker</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><a href="https://oppty.lightning.force.com/lightning/r/Project_Insight__c/a4dQn00000ASNDdIAP/view" target="_blank">Send Service/Fee Agreements</a></td>
+        <td><span class="db-amber">Action Item</span></td>
+        <td style="color:rgba(255,255,255,.7);font-size:12px;">Kira Shockowitz</td>
+        <td><span class="due-none">--</span></td>
+        <td><span class="due-over">May 29, 2026</span></td>
+        <td><span class="db-muted">To Do</span></td>
+        <td style="color:rgba(255,255,255,.4);">--</td>
+      </tr>
+      <tr class="blocker">
+        <td><a href="https://oppty.lightning.force.com/lightning/r/Project_Insight__c/a4dQn00000AXzTZIA1/view" target="_blank">Buy Additional Licenses</a></td>
+        <td><span class="db-blue">Decision</span></td>
+        <td style="color:rgba(255,255,255,.7);font-size:12px;">Chris Shockowitz</td>
+        <td><span class="due-none">--</span></td>
+        <td><span class="due-none">No due date</span></td>
+        <td><span class="db-muted">To Do</span></td>
+        <td>Yes</td>
+      </tr>
+      <tr class="blocker">
+        <td><a href="https://oppty.lightning.force.com/lightning/r/Project_Insight__c/a4dQn00000AXzWnIAL/view" target="_blank">New User Onnboarding</a></td>
+        <td><span class="db-blue">Decision</span></td>
+        <td style="color:rgba(255,255,255,.7);font-size:12px;">Kira Shockowitz</td>
+        <td><span class="due-none">--</span></td>
+        <td><span class="due-none">No due date</span></td>
+        <td><span class="db-muted">To Do</span></td>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="section">
+  <div class="slabel acc">Cases</div>
+  <h2>Open Work</h2>
+  <div class="case-section">
+    <div class="case-section-hdr"><span class="badge b-pend">Pending Acceptance</span><h3>0 cases awaiting sign-off</h3></div>
+    <table class="tbl"><thead><tr><th style="width:36%">Case</th><th>Epic</th><th>Assignee</th><th>Hrs</th><th>Next Step</th></tr></thead>
+    <tbody><tr><td colspan="5" style="color:var(--ink-f);font-style:italic;text-align:center;">No cases pending acceptance</td></tr></tbody></table>
+  </div>
+  <div class="case-section">
+    <div class="case-section-hdr"><span class="badge b-amber">In Progress</span><h3>3 cases in active delivery</h3></div>
+    <table class="tbl"><thead><tr><th style="width:36%">Case</th><th>Epic</th><th>Assignee</th><th>Hrs</th><th>Next Step</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Case/500Qn00000kglJPIAY/view" target="_blank">EA-9 - Activate Users (prepare training documentation)</a></div><div style="font-size:10px;color:var(--red);margin-top:2px;">Epic overdue: Mar 31, 2026</div></td>
+        <td style="font-size:12px;">Client Onboarding Process</td>
+        <td>Anamaria Vincovic</td><td><span class="mono">0 hrs</span></td><td><span class="nv">--</span></td>
+      </tr>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Case/500Qn00000rCgMkIAK/view" target="_blank">EA-36 - Convert Lead</a></div></td>
+        <td style="font-size:12px;">Opportunity Management (Trust/Transaction Process)</td>
+        <td>Casey Ervin</td><td><span class="mono">1 hr</span></td><td><span class="nv">--</span></td>
+      </tr>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Case/500Qn00000tXBxwIAG/view" target="_blank">EA-53 - Plaud Zapier Integration</a></div></td>
+        <td style="font-size:12px;">Plaud Integration</td>
+        <td>Casey Ervin</td><td><span class="mono">1 hr</span></td>
+        <td style="font-size:11.5px;color:var(--ink-m);">Casey to connect Plaud/Zapier and identify gaps to configure</td>
+      </tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="slabel blue">Upcoming Interactions</div>
+  <h2>Agenda &amp; Expected Outcomes</h2>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000BwiDIAS/view" target="_blank">Equity Advisors x Oppty: Convert Lead Demo</a></div>
+      <div class="icard-meta">June 6, 2026 &middot; Support &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000ChHJIA0/view" target="_blank">Advisor Submission</a></div>
+      <div class="icard-meta">June 6, 2026 &middot; Requirements &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist">
+      <li>Discuss Tasks vs Lead Input</li>
+      <li>Confirm Andrea's E2E process for a Lead</li>
+      <li>Discuss Andrea's pain points: Managing Carl's Notes, Meeting Action Items, Lead &amp; Opportunity Follow Up</li>
+      <li>Discuss Andrea's Priorities: Transaction Processing, File Management</li>
+      <li>Confirm Carl's ideal workflow</li>
+    </ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000AUJNIA4/view" target="_blank">Equity Advisors Weekly Support Meeting</a></div>
+      <div class="icard-meta">June 8, 2026 &middot; Support &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist">
+      <li>Lead Creation &amp; Management: # of Open Leads indicator, security/access, New Lead Screen Flow enhancements, potential automations</li>
+      <li>Update Profile functionality from Household: confirm screen flow fields</li>
+      <li>New Transaction functionality: Open Transactions &amp; Total Amount, page layouts, enhancements per product type, Trust Transactions, Account/Account Relationships</li>
+    </ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn0000008oUHIAY/view" target="_blank">Salesforce 101: Introduction to Salesforce Homepage</a></div>
+      <div class="icard-meta">June 13, 2026 &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist">
+      <li>Introduction to Salesforce Apps &amp; App Launcher</li>
+      <li>Homepage navigation: tabs, list views, dashboard, Today's Events, Today's Tasks</li>
+      <li>List Views deep dive: create, public/private, fields, arrangement, filters</li>
+    </ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn0000008oajIAA/view" target="_blank">Salesforce 101: Introduction to Records &amp; Activity</a></div>
+      <div class="icard-meta">June 13, 2026 &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist">
+      <li>Record Pages: page layout customization, activity, chatter, quick actions, highlight fields, automations</li>
+      <li>Reports &amp; Dashboards: create reports (filters, group rows), dashboards (components, charts)</li>
+    </ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn0000009SczIAE/view" target="_blank">Equity Advisors Commission Discovery Meeting</a></div>
+      <div class="icard-meta">June 15, 2026 &middot; Requirements &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist">
+      <li>Discuss current Commission process &amp; data model</li>
+      <li>Confirm systems used for Commissions &amp; Commission Payouts</li>
+      <li>Request current reports &amp; metrics related to Commissions</li>
+      <li>Discuss Commission MVP or potential Integrations needed</li>
+    </ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CNs5IAG/view" target="_blank">Plaud x Salesforce Demo</a></div>
+      <div class="icard-meta">June 15, 2026 &middot; Support &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000COGHIA4/view" target="_blank">EA x Oppty: New Product Request Support Meeting</a></div>
+      <div class="icard-meta">June 15, 2026 &middot; Support &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CNthIAG/view" target="_blank">Plaud x Salesforce Support Meeting</a></div>
+      <div class="icard-meta">June 22, 2026 &middot; Support &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CO6bIAG/view" target="_blank">EA x Oppty: New Product Request Requirements Meeting</a></div>
+      <div class="icard-meta">June 22, 2026 &middot; Requirements &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+</div>
+
+<div class="section">
+  <div class="slabel acc">North Star Metrics</div>
+  <h2>Key Performance Results</h2>
+  <div class="ksi-grid">
+    <div class="ksi-card">
+      <div class="ksi-name"><a href="https://oppty.lightning.force.com/lightning/r/Key_Result__c/a4WQn000000Mg8fMAC/view" target="_blank"># Days, Closed Orders</a></div>
+      <div class="ksi-annual">0</div>
+      <div class="ksi-row"><div class="ksi-sub">Monthly <span>0</span></div><div class="ksi-sub">Quarterly <span>0</span></div></div>
+    </div>
+    <div class="ksi-card">
+      <div class="ksi-name"><a href="https://oppty.lightning.force.com/lightning/r/Key_Result__c/a4WQn000000ISgzMAG/view" target="_blank">Amount Closed/Advisor</a></div>
+      <div class="ksi-annual">0</div>
+      <div class="ksi-row"><div class="ksi-sub">Monthly <span>0</span></div><div class="ksi-sub">Quarterly <span>0</span></div></div>
+    </div>
+    <div class="ksi-card">
+      <div class="ksi-name"><a href="https://oppty.lightning.force.com/lightning/r/Key_Result__c/a4WQn000000JnOPMA0/view" target="_blank">Orders/Operations User</a></div>
+      <div class="ksi-annual">0</div>
+      <div class="ksi-row"><div class="ksi-sub">Monthly <span>0</span></div><div class="ksi-sub">Quarterly <span>0</span></div></div>
+    </div>
+    <div class="ksi-card">
+      <div class="ksi-name"><a href="https://oppty.lightning.force.com/lightning/r/Key_Result__c/a4WQn000000JnZhMAK/view" target="_blank">Profit Margin %</a></div>
+      <div class="ksi-annual">0</div>
+      <div class="ksi-row"><div class="ksi-sub">Monthly <span>0</span></div><div class="ksi-sub">Quarterly <span>0</span></div></div>
+    </div>
+  </div>
+  <p style="font-size:11.5px;color:var(--ink-f);margin-top:8px;">Monthly and quarterly showing 0 -- confirm result capture job is running for this project.</p>
+</div>
+
+<div class="section">
+  <div class="slabel blue">Performance Metrics</div>
+  <h2>Current State Indicators</h2>
+  <div class="ind-group">
+    <div class="igl igl-p">Performance</div>
+    <table class="tbl"><thead><tr><th style="width:40%">Indicator</th><th>Record Count</th><th>Last Result</th></tr></thead>
+    <tbody>
+      <tr><td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000MWfZIAW/view" target="_blank"># Open Leads</a></div></td><td><span class="nv">--</span></td><td><span class="res-val">216</span></td></tr>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000M1VJIA0/view" target="_blank">Amount, Open Opportunitys</a></div></td>
+        <td><span class="mono">2</span></td><td><span class="res-val">$100,000.00</span></td>
+      </tr>
+      <tr class="sub-lbl"><td colspan="3">By User (high to low)</td></tr>
+      <tr class="sub-row"><td><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000NZ20IAG/view" target="_blank">Chris Shockowitz</a></td><td><span class="mono">1</span></td><td class="mono">$100,000.00</td></tr>
+      <tr class="sub-row"><td><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000NZ1wIAG/view" target="_blank">Carl Worden</a></td><td><span class="mono">0</span></td><td class="mono res-warn">$0</td></tr>
+      <tr><td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000McGLIA0/view" target="_blank">Balance, Managed Financial Accounts (Managed)</a></div></td><td><span class="mono">3</span></td><td><span class="res-warn">$0</span></td></tr>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000Mc9tIAC/view" target="_blank">Order Amount, Open Orders</a></div></td>
+        <td><span class="mono">3</span></td><td><span class="res-warn">$0</span></td>
+      </tr>
+      <tr class="sub-lbl"><td colspan="3">By User (high to low)</td></tr>
+      <tr class="sub-row"><td><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000NuklIAC/view" target="_blank">Andrea Romero</a></td><td><span class="mono">0</span></td><td class="mono res-warn">$0</td></tr>
+      <tr class="sub-row"><td><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000NuksIAC/view" target="_blank">Kira Shockowitz</a></td><td><span class="mono">0</span></td><td class="mono res-warn">$0</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="slabel acc">Key Indicators</div>
+  <h2>Adoption &amp; Outcome Tracking</h2>
+  <div class="ind-group">
+    <div class="igl igl-a">Adoption</div>
+    <table class="tbl"><thead><tr><th style="width:30%">Indicator</th><th>Record Count</th><th>Last Result</th><th>Current Mo</th><th>Current Qtr</th><th>Current Yr</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000N9DtIAK/view" target="_blank">Conversion %, Leads</a></div></td>
+        <td><span class="mono">246</span></td><td><span class="res-val">12.15%</span></td>
+        <td><span class="nv">--</span></td><td><span class="nv">--</span></td><td><span class="nv">--</span></td>
+      </tr>
+    </tbody></table>
+  </div>
+  <div class="ind-group">
+    <div class="igl igl-r">Result</div>
+    <table class="tbl"><thead><tr><th style="width:30%">Indicator</th><th>Record Count</th><th>Last Result</th><th>Current Mo</th><th>Current Qtr</th><th>Current Yr</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000M1WvIAK/view" target="_blank">Amount, Closed Opportunitys</a></div></td>
+        <td><span class="mono">0</span></td><td><span class="res-warn">$0</span></td>
+        <td><span class="nv">--</span></td><td><span class="nv">--</span></td><td><span class="nv">--</span></td>
+      </tr>
+      <tr class="sub-lbl"><td colspan="6">By User (high to low)</td></tr>
+      <tr class="sub-row"><td><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000NZ1vIAG/view" target="_blank">Carl Worden</a></td><td><span class="mono">0</span></td><td class="mono res-warn">$0</td><td>--</td><td>--</td><td>--</td></tr>
+      <tr class="sub-row"><td><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000NZ1zIAG/view" target="_blank">Chris Shockowitz</a></td><td><span class="mono">0</span></td><td class="mono res-warn">$0</td><td>--</td><td>--</td><td>--</td></tr>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000McBVIA0/view" target="_blank">Order Amount, Closed Orders</a></div></td>
+        <td><span class="mono">0</span></td><td><span class="res-warn">$0</span></td>
+        <td><span class="nv">--</span></td><td><span class="nv">--</span></td><td><span class="nv">--</span></td>
+      </tr>
+      <tr class="sub-lbl"><td colspan="6">By User (high to low)</td></tr>
+      <tr class="sub-row"><td><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000NukkIAC/view" target="_blank">Andrea Romero</a></td><td><span class="mono">0</span></td><td class="mono res-warn">$0</td><td>--</td><td>--</td><td>--</td></tr>
+      <tr class="sub-row"><td><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000NukrIAC/view" target="_blank">Kira Shockowitz</a></td><td><span class="mono">0</span></td><td class="mono res-warn">$0</td><td>--</td><td>--</td><td>--</td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<div class="section">
+  <div class="slabel acc">Historical Trends</div>
+  <h2>Indicator Results</h2>
+  <p style="color:var(--ink-f);font-style:italic;font-size:13px;">No historical trend data available -- no indicators have result history yet for this project.</p>
+</div>
+
+<div class="section">
+  <div class="slabel red">Coverage Gaps</div>
+  <h2>User Filter Coverage</h2>
+  <div class="gap-section">
+    <div class="gap-title">Gap 1 -- Active Users Without Indicator Filters</div>
+    <table class="tbl"><thead><tr><th style="width:28%">Name</th><th>Title</th><th>User Indicators</th><th>Coverage</th></tr></thead>
+    <tbody><tr><td colspan="4" style="color:var(--ink-f);font-style:italic;text-align:center;">Active user data not yet available in payload</td></tr></tbody></table>
+  </div>
+  <div class="gap-section">
+    <div class="gap-title">Gap 3 -- Result Freshness</div>
+    <table class="tbl"><thead><tr><th style="width:50%">Indicator Name</th><th>Last Result Date</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><div class="cn">Conversion %, Leads</div></td><td><span class="nv">--</span></td><td><span class="s-miss">Not Reporting</span></td></tr>
+      <tr><td><div class="cn"># Open Leads</div></td><td><span class="nv">--</span></td><td><span class="s-miss">Not Reporting</span></td></tr>
+      <tr><td><div class="cn">Amount, Open Opportunitys</div></td><td><span class="nv">--</span></td><td><span class="s-miss">Not Reporting</span></td></tr>
+      <tr><td><div class="cn">Balance, Managed Financial Accounts (Managed)</div></td><td><span class="nv">--</span></td><td><span class="s-miss">Not Reporting</span></td></tr>
+      <tr><td><div class="cn">Order Amount, Open Orders</div></td><td><span class="nv">--</span></td><td><span class="s-miss">Not Reporting</span></td></tr>
+      <tr><td><div class="cn">Amount, Closed Opportunitys</div></td><td><span class="nv">--</span></td><td><span class="s-miss">Not Reporting</span></td></tr>
+      <tr><td><div class="cn">Order Amount, Closed Orders</div></td><td><span class="nv">--</span></td><td><span class="s-miss">Not Reporting</span></td></tr>
+    </tbody></table>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-brand">Oppty &middot; Equity Advisors &middot; Weekly Update</div>
+  <div class="footer-note">Week of May 26, 2026 &middot; weekly-project-communication v1.6 &middot; auto-generated</div>
+</footer>
+</div>
+</body>
+</html>
