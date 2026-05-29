@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dress for Success — Weekly Project Communication</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f5f2ec;--surface:#ffffff;--raised:#faf8f4;--border:#e2ddd6;--border-s:#d0cbc3;--ink:#1a1714;--ink-m:#6b6560;--ink-f:#a8a39d;--accent:#c8692a;--accent-l:#f0e0d0;--accent-d:#8a4a1e;--green:#3a7a5c;--green-l:#d4ede3;--amber:#b07820;--amber-l:#f5e8ce;--red:#b54040;--red-l:#f5dada;--blue:#2a5c8a;--blue-l:#d4e4f5;--purple:#6a3a8a;--purple-l:#ead4f5;--sf:#0176d3;--shadow:0 2px 12px rgba(26,23,20,.07);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:14px;}
+.page{max-width:900px;margin:0 auto;padding:44px 28px 80px;}
+.header{border-bottom:2px solid var(--ink);padding-bottom:24px;margin-bottom:32px;}
+.eyebrow{font-size:10px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:8px;}
+.header h1{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;line-height:1.1;margin-bottom:4px;}
+.header-sub{font-size:13px;color:var(--ink-m);margin-bottom:16px;}
+.pills{display:flex;gap:8px;flex-wrap:wrap;}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;background:var(--surface);border:1px solid var(--border-s);border-radius:20px;padding:3px 10px;color:var(--ink-m);}
+.dot{width:5px;height:5px;border-radius:50%;display:inline-block;flex-shrink:0;}
+.dot-g{background:var(--green);}.dot-a{background:var(--amber);}.dot-r{background:var(--red);}
+.slabel{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--ink-f);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.slabel::after{content:'';flex:1;height:1px;background:var(--border);}
+.slabel.acc{color:var(--accent);}.slabel.blue{color:var(--blue);}.slabel.red{color:var(--red);}
+.section{margin-bottom:40px;}
+.section h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;margin-bottom:14px;}
+.focus-wrap{background:var(--ink);border-radius:12px;padding:24px 28px;margin-bottom:40px;}
+.focus-wrap h3{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:4px;}
+.fw-week{font-size:11px;color:rgba(255,255,255,.45);margin-bottom:18px;letter-spacing:.05em;}
+.itbl{width:100%;border-collapse:collapse;}
+.itbl th{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.35);padding:6px 10px;text-align:left;border-bottom:1px solid rgba(255,255,255,.1);}
+.itbl td{padding:9px 10px;font-size:12.5px;border-bottom:1px solid rgba(255,255,255,.05);vertical-align:middle;}
+.itbl tr:last-child td{border-bottom:none;}
+.itbl tr.blocker{border-left:2px solid var(--red);}
+.itbl tr.blocker td{background:rgba(181,64,64,.07);}
+.itbl a{color:#fff;font-weight:600;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);}
+.it-rel a{color:rgba(255,255,255,.6);font-size:11.5px;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.15);}
+.due-over{color:#f08080;font-weight:600;font-family:'JetBrains Mono',monospace;font-size:11px;}
+.due-none{color:rgba(255,255,255,.25);font-size:11px;font-style:italic;}
+.badge{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;white-space:nowrap;display:inline-block;}
+.b-red{background:var(--red-l);color:var(--red);}.b-amber{background:var(--amber-l);color:var(--amber);}.b-blue{background:var(--blue-l);color:var(--blue);}.b-green{background:var(--green-l);color:var(--green);}.b-purple{background:var(--purple-l);color:var(--purple);}.b-muted{background:#ece9e3;color:var(--ink-m);}.b-pend{background:#ead4f5;color:var(--purple);}
+.db-red{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(181,64,64,.3);color:#f08080;}
+.db-amber{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(176,120,32,.3);color:#f5c96a;}
+.db-green{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(58,122,92,.3);color:#78eda8;}
+.db-blue{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(42,92,138,.3);color:#78b4f0;}
+.db-purple{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(106,58,138,.3);color:#c890f0;}
+.db-muted{font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);}
+.case-section{margin-bottom:20px;}
+.case-section-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.case-section-hdr h3{font-size:13px;font-weight:600;color:var(--ink);}
+.tbl{width:100%;border-collapse:collapse;background:var(--surface);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--border);margin-bottom:14px;}
+.tbl th{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-f);background:var(--raised);padding:8px 13px;text-align:left;border-bottom:1px solid var(--border);}
+.tbl td{padding:10px 13px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;color:var(--ink-m);}
+.tbl tr:last-child td{border-bottom:none;}
+.tbl tr:nth-child(even) td{background:#faf9f6;}
+.cn{font-weight:600;color:var(--ink);font-size:13px;}
+.mono{font-family:'JetBrains Mono',monospace;font-size:12px;}
+.nv{color:var(--ink-f);}
+.res-warn{color:var(--red);font-weight:600;}
+.res-ok{color:var(--green);font-weight:600;}
+.res-val{color:var(--ink);font-weight:600;font-family:'JetBrains Mono',monospace;font-size:12.5px;}
+a.sf-link{color:var(--sf);text-decoration:none;border-bottom:1px solid rgba(1,118,211,.2);font-size:12.5px;}
+.icard{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-bottom:12px;box-shadow:var(--shadow);}
+.icard-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px;flex-wrap:wrap;}
+.icard-title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;margin-bottom:2px;}
+.icard-title a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border-s);}
+.icard-meta{font-size:11.5px;color:var(--ink-m);}
+.icard-lbl{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;margin-bottom:6px;}
+.icard-lbl.muted{color:var(--ink-f);}.icard-lbl.green{color:var(--green);}
+.icard-div{height:1px;background:var(--border);margin:10px 0;}
+.blist{list-style:none;padding:0;}
+.blist li{padding:3px 0 3px 14px;position:relative;font-size:13px;color:var(--ink-m);line-height:1.6;}
+.blist li::before{content:'--';position:absolute;left:0;color:var(--accent);font-weight:700;}
+.blist li ul{margin-top:3px;padding-left:12px;}
+.blist li ul li::before{color:var(--ink-f);}
+.ksi-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:6px;}
+.ksi-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px;box-shadow:var(--shadow);}
+.ksi-name{font-size:11px;color:var(--ink-m);margin-bottom:10px;line-height:1.4;}
+.ksi-name a{color:var(--ink-m);text-decoration:none;border-bottom:1px solid var(--border);}
+.ksi-annual{font-family:'JetBrains Mono',monospace;font-size:26px;font-weight:600;color:var(--accent);margin-bottom:8px;line-height:1;}
+.ksi-row{display:flex;gap:16px;border-top:1px solid var(--border);padding-top:8px;}
+.ksi-sub{font-size:10.5px;color:var(--ink-m);}
+.ksi-sub span{font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--ink);font-weight:600;}
+.igl{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;border-radius:6px;display:inline-block;margin-bottom:8px;}
+.igl-a{background:var(--accent-l);color:var(--accent-d);}.igl-p{background:var(--blue-l);color:var(--blue);}.igl-r{background:var(--green-l);color:var(--green);}.igl-pr{background:var(--purple-l);color:var(--purple);}
+.ind-group{margin-bottom:22px;}
+.sub-row td{background:#f8f6f2 !important;font-size:12px;border-top:1px dashed var(--border) !important;}
+.sub-row td:first-child{padding-left:26px;color:var(--ink-m);font-style:italic;}
+.sub-lbl td{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-f);padding:4px 13px 4px 26px;background:#f0ede8 !important;border-top:1px solid var(--border) !important;}
+.chart-section{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--border);}
+.chart-section:last-child{border-bottom:none;padding-bottom:0;}
+.chart-ind-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+.chart-ind-name a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--border-s);}
+.chart-sub{font-size:11.5px;color:var(--ink-m);margin-bottom:14px;}
+.chart-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+.chart-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px;box-shadow:var(--shadow);}
+.chart-card-lbl{font-size:9px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-f);margin-bottom:10px;}
+canvas{display:block;width:100% !important;height:140px !important;}
+.gap-section{margin-bottom:22px;}
+.gap-title{font-weight:600;font-size:13px;color:var(--ink);margin-bottom:8px;}
+.s-ok{color:var(--green);font-weight:600;font-size:12px;}
+.s-miss{color:var(--red);font-weight:600;font-size:12px;}
+.gap-action{background:var(--red-l);border-left:2px solid var(--red);padding:8px 12px;border-radius:0 6px 6px 0;font-size:12.5px;color:var(--red);margin-bottom:8px;line-height:1.5;}
+.gap-action strong{color:var(--ink);}
+.footer{border-top:1px solid var(--border);padding-top:20px;margin-top:48px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+.footer-brand{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-f);font-weight:600;}
+.footer-note{font-size:11px;color:var(--ink-f);font-family:'JetBrains Mono',monospace;}
+@media(max-width:600px){.ksi-grid,.chart-grid{grid-template-columns:1fr;}}
+@media print{body{background:#fff;}.page{padding:20px;}canvas{page-break-inside:avoid;}}
+</style>
+</head>
+<body>
+<div class="page">
+<header class="header">
+  <div class="eyebrow">Weekly Project Communication &middot; Oppty</div>
+  <h1>Dress for Success</h1>
+  <div class="header-sub">Week of May 26, 2026 &middot; Project: In Progress</div>
+  <div class="pills">
+    <span class="pill"><span class="dot dot-a"></span> 1 Active Epic &middot; 2 Open Cases</span>
+    <span class="pill"><span class="dot dot-r"></span> 1 Active Blocker</span>
+    <span class="pill"><span class="dot dot-a"></span> 0 Pending Acceptance</span>
+  </div>
+</header>
+<div class="focus-wrap">
+  <h3>Week of May 26, 2026 &mdash; Focus &amp; Priorities</h3>
+  <div class="fw-week">Project Insights &middot; Active &middot; Sorted by Due Date</div>
+  <table class="itbl">
+    <thead><tr><th style="width:27%">Insight</th><th>Type</th><th>Assignee</th><th>Related To</th><th>Due</th><th>Status</th><th>Blocker</th></tr></thead>
+    <tbody>
+      <tr class="blocker">
+        <td><a href="https://oppty.lightning.force.com/lightning/r/Project_Insight__c/a4dQn00000ASLYQIA5/view" target="_blank">Schedule Recurring Stakeholder Meeting</a></td>
+        <td><span class="db-amber">Action Item</span></td>
+        <td style="color:rgba(255,255,255,.7);font-size:12px;">Tamala McBath</td>
+        <td class="it-rel"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn0000006pUT/view" target="_blank">D4S / Oppty Stakeholder Meeting</a></td>
+        <td><span class="due-over">May 27, 2026</span></td>
+        <td><span class="db-muted">To Do</span></td>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="section">
+  <div class="slabel acc">Cases</div>
+  <h2>Open Work</h2>
+  <div class="case-section">
+    <div class="case-section-hdr"><span class="badge b-pend">Pending Acceptance</span><h3>0 cases awaiting sign-off</h3></div>
+    <table class="tbl"><thead><tr><th style="width:36%">Case</th><th>Epic</th><th>Assignee</th><th>Hrs</th><th>Next Step</th></tr></thead>
+    <tbody><tr><td colspan="5" style="color:var(--ink-f);font-style:italic;text-align:center;">No cases pending acceptance</td></tr></tbody></table>
+  </div>
+  <div class="case-section">
+    <div class="case-section-hdr"><span class="badge b-amber">In Progress</span><h3>2 cases in active delivery</h3></div>
+    <table class="tbl"><thead><tr><th style="width:36%">Case</th><th>Epic</th><th>Assignee</th><th>Hrs</th><th>Next Step</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Case/500Qn00000oL4GjIAK/view" target="_blank">D4S-2007 - Create Intake Request Form (FormAssembly)</a></div></td>
+        <td style="font-size:12px;">Program Management Enhancements (Client Intake)</td>
+        <td>Russell Martinez</td><td><span class="mono">5 hrs</span></td><td><span class="nv">--</span></td>
+      </tr>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Case/500Qn00000oKu2tIAC/view" target="_blank">D4S-2006 - Convert Lead/Create Appointment</a></div></td>
+        <td style="font-size:12px;">Program Management Enhancements (Client Intake)</td>
+        <td>Russell Martinez</td><td><span class="mono">2 hrs</span></td><td><span class="nv">--</span></td>
+      </tr>
+    </tbody></table>
+  </div>
+</div>
+<div class="section">
+  <div class="slabel blue">Upcoming Interactions</div>
+  <h2>Agenda &amp; Expected Outcomes</h2>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn0000006pUTIAY/view" target="_blank">D4S / Oppty Stakeholder Meeting</a></div>
+      <div class="icard-meta">June 6, 2026 &middot; Requirements &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist">
+      <li>Identify metrics for each app: business development, program engagement, case management, Hope for Success</li>
+      <li>Identify interactions: Business Development Training, Program Management Training, Accenture ongoing meetings</li>
+    </ul>
+    <div class="icard-div"></div>
+    <div class="icard-lbl green">Expected Outcomes</div>
+    <ul class="blist"><li>Confirm points of contact for: sales opportunity data migration, program management, case management, HOPE for Success</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CJRtIAO/view" target="_blank">D4S x Oppty: Stakeholder Meeting on Donations</a></div>
+      <div class="icard-meta">June 6, 2026 &middot; Stakeholder &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist">
+      <li>Discuss Donation Ownership within D4S: Confirm Data Model &amp; Metric Ownership, Confirm Import Review Ownership</li>
+      <li>Review Donation Import file from Jessi L.</li>
+      <li>Confirm Priority Level of Donations within D4S</li>
+    </ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CNvJIAW/view" target="_blank">D4S x Accenture Follow Up Meeting</a></div>
+      <div class="icard-meta">June 6, 2026 &middot; Requirements &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CUtZIAW/view" target="_blank">D4S x Oppty: Organization Training (Onsite)</a></div>
+      <div class="icard-meta">June 6, 2026 &middot; Support &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CO1lIAG/view" target="_blank">D4S x Oppty: HOPE for Success Support Meeting</a></div>
+      <div class="icard-meta">June 15, 2026 &middot; Support &middot; <span class="badge b-muted">Backlog</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CO09IAG/view" target="_blank">D4S x Oppty: HOPE for Success Acceptance Meeting</a></div>
+      <div class="icard-meta">June 22, 2026 &middot; Requirements &middot; <span class="badge b-muted">Backlog</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CO3NIAW/view" target="_blank">D4S x Oppty: Appointment Requirements Meeting</a></div>
+      <div class="icard-meta">June 22, 2026 &middot; Requirements &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CO4zIAG/view" target="_blank">D4S x Oppty: HOPE for Success Requirements Meeting</a></div>
+      <div class="icard-meta">June 22, 2026 &middot; Requirements &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CNwvIAG/view" target="_blank">D4S x Oppty: Appointment Request Acceptance Meeting</a></div>
+      <div class="icard-meta">June 29, 2026 &middot; Support &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+  <div class="icard">
+    <div class="icard-header"><div>
+      <div class="icard-title"><a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000CNyXIAW/view" target="_blank">D4S x Oppty: Appointment Request Support Meeting</a></div>
+      <div class="icard-meta">July 6, 2026 &middot; Support &middot; <span class="badge b-red">To be Scheduled</span></div>
+    </div></div>
+    <div class="icard-lbl muted">Agenda</div>
+    <ul class="blist"><li style="color:var(--ink-f);font-style:italic;">No agenda defined</li></ul>
+  </div>
+</div>
+<div class="section">
+  <div class="slabel acc">North Star Metrics</div>
+  <h2>Key Performance Results</h2>
+  <div class="ksi-grid">
+    <div class="ksi-card">
+      <div class="ksi-name"><a href="https://oppty.lightning.force.com/lightning/r/Key_Result__c/a4WQn000000GiUvMAK/view" target="_blank">% Reimbursed</a></div>
+      <div class="ksi-annual">702</div>
+      <div class="ksi-row"><div class="ksi-sub">Monthly <span>136</span></div><div class="ksi-sub">Quarterly <span>192</span></div></div>
+    </div>
+    <div class="ksi-card">
+      <div class="ksi-name"><a href="https://oppty.lightning.force.com/lightning/r/Key_Result__c/a4WQn000000HtrJMAS/view" target="_blank">Services Delivered/Employee</a></div>
+      <div class="ksi-annual">203.71</div>
+      <div class="ksi-row"><div class="ksi-sub">Monthly <span>31.94</span></div><div class="ksi-sub">Quarterly <span>153.57</span></div></div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="slabel blue">Performance Metrics</div>
+  <h2>Current State Indicators</h2>
+  <div class="ind-group">
+    <div class="igl igl-p">Performance</div>
+    <table class="tbl"><thead><tr><th style="width:50%">Indicator</th><th>Record Count</th><th>Last Result</th></tr></thead>
+    <tbody>
+      <tr><td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000HlvNIAS/view" target="_blank"># Open Program Engagementss</a></div></td><td><span class="nv">--</span></td><td><span class="res-val">788</span></td></tr>
+      <tr><td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000Jlo1IAC/view" target="_blank">Amount, Open Opportunitys</a></div></td><td><span class="mono">90</span></td><td><span class="res-val">$17,184.97</span></td></tr>
+    </tbody></table>
+  </div>
+</div>
+<div class="section">
+  <div class="slabel acc">Key Indicators</div>
+  <h2>Adoption &amp; Outcome Tracking</h2>
+  <div class="ind-group">
+    <div class="igl igl-r">Result</div>
+    <table class="tbl"><thead><tr><th style="width:30%">Indicator</th><th>Record Count</th><th>Last Result</th><th>Current Mo</th><th>Current Qtr</th><th>Current Yr</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000FGcMIAW/view" target="_blank"># Closed Service Deliverys (Closed)</a></div></td>
+        <td><span class="nv">--</span></td><td><span class="res-val">27,838</span></td><td><span class="res-val">737</span></td><td><span class="res-val">1,313.0</span></td><td><span class="res-val">3,463.0</span></td>
+      </tr>
+      <tr>
+        <td><div class="cn"><a class="sf-link" href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000I5twIAC/view" target="_blank">Total Hours Worked, Completed Volunteer Hourss</a></div></td>
+        <td><span class="mono">1,312</span></td><td><span class="res-val">3,838</span></td><td><span class="res-warn">0</span></td><td><span class="res-warn">0</span></td><td><span class="res-warn">0</span></td>
+      </tr>
+    </tbody></table>
+  </div>
+</div>
+<div class="section">
+  <div class="slabel acc">Historical Trends</div>
+  <h2>Indicator Results</h2>
+  <div class="chart-section">
+    <div class="chart-ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000FGcMIAW/view" target="_blank"># Closed Service Deliverys (Closed)</a></div>
+    <div class="chart-sub">Result &middot; Last: 27,838</div>
+    <div class="chart-grid">
+      <div class="chart-card"><div class="chart-card-lbl">Monthly (Mar 26 - May 26)</div><canvas id="c1_m"></canvas></div>
+      <div class="chart-card"><div class="chart-card-lbl">Quarterly (Q4 25 - Q2 26)</div><canvas id="c1_q"></canvas></div>
+      <div class="chart-card"><div class="chart-card-lbl">Annual (2024 - 2026 YTD)</div><canvas id="c1_a"></canvas></div>
+    </div>
+  </div>
+  <div class="chart-section">
+    <div class="chart-ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000I5twIAC/view" target="_blank">Total Hours Worked, Completed Volunteer Hourss</a></div>
+    <div class="chart-sub">Result &middot; Last: 3,838 &middot; 1,312 records</div>
+    <div class="chart-grid">
+      <div class="chart-card"><div class="chart-card-lbl">Monthly (Nov 25 - Dec 25)</div><canvas id="c2_m"></canvas></div>
+      <div class="chart-card"><div class="chart-card-lbl">Quarterly (Q3 25 - Q4 25)</div><canvas id="c2_q"></canvas></div>
+      <div class="chart-card"><div class="chart-card-lbl">Annual (2025 - 2026 YTD)</div><canvas id="c2_a"></canvas></div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="slabel red">Coverage Gaps</div>
+  <h2>User Filter Coverage</h2>
+  <div class="gap-section">
+    <div class="gap-title">Gap 1 - Active Users Without Indicator Filters</div>
+    <table class="tbl"><thead><tr><th style="width:28%">Name</th><th>Title</th><th>User Indicators</th><th>Coverage</th></tr></thead>
+    <tbody><tr><td colspan="4" style="color:var(--ink-f);font-style:italic;text-align:center;">Active user data not yet available in payload</td></tr></tbody></table>
+  </div>
+  <div class="gap-section">
+    <div class="gap-title">Gap 3 - Result Freshness</div>
+    <table class="tbl"><thead><tr><th style="width:50%">Indicator Name</th><th>Last Result Date</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td><div class="cn"># Open Program Engagementss</div></td><td><span class="nv">--</span></td><td><span class="s-miss">Not Reporting</span></td></tr>
+      <tr><td><div class="cn">Amount, Open Opportunitys</div></td><td><span class="nv">--</span></td><td><span class="s-miss">Not Reporting</span></td></tr>
+      <tr><td><div class="cn"># Closed Service Deliverys (Closed)</div></td><td>May 2026</td><td><span class="s-ok">Current</span></td></tr>
+      <tr><td><div class="cn">Total Hours Worked, Completed Volunteer Hourss</div></td><td>Dec 2025</td><td><span class="s-ok">Current</span></td></tr>
+    </tbody></table>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-brand">Oppty &middot; Dress for Success &middot; Weekly Update</div>
+  <div class="footer-note">Week of May 26, 2026 &middot; weekly-project-communication v1.6 &middot; auto-generated</div>
+</footer>
+</div>
+<script>
+var AMBER='#b07820',BLUE='#2a5c8a',gridC='rgba(0,0,0,.06)',textC='#a8a39d';
+function bar(id,labels,datasets,opts){
+  opts=opts||{};var canvas=document.getElementById(id);if(!canvas)return;
+  var ctx=canvas.getContext('2d');var W=canvas.offsetWidth||260,H=140;
+  canvas.width=W;canvas.height=H;
+  var pad={t:12,r:8,b:30,l:38};var cW=W-pad.l-pad.r,cH=H-pad.t-pad.b;
+  var allV=[];datasets.forEach(function(d){d.data.forEach(function(v){allV.push(Math.abs(v));});});
+  var maxV=(Math.max.apply(null,allV)*1.18)||1;
+  var nG=labels.length,nS=datasets.length;var gW=cW/nG,bW=Math.min((gW-6)/nS,28),gap=(gW-bW*nS)/2;
+  ctx.strokeStyle=gridC;ctx.lineWidth=0.5;
+  for(var i=0;i<=4;i++){var y=pad.t+cH-(i/4)*cH;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(pad.l+cW,y);ctx.stroke();ctx.fillStyle=textC;ctx.font='8px DM Sans,sans-serif';ctx.textAlign='right';ctx.fillText((maxV*i/4).toFixed(0),pad.l-3,y+3);}
+  datasets.forEach(function(ds,si){ctx.fillStyle=ds.color;ds.data.forEach(function(v,gi){var x=pad.l+gi*gW+gap+si*bW;var bH=Math.max(1,(Math.abs(v)/maxV)*cH);var y=pad.t+cH-bH;ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,bW-1,bH,2);else ctx.rect(x,y,bW-1,bH);ctx.fill();});});
+  ctx.fillStyle=textC;ctx.font='8px DM Sans,sans-serif';ctx.textAlign='center';
+  labels.forEach(function(l,gi){ctx.fillText(l,pad.l+gi*gW+gW/2,H-4);});
+}
+window.addEventListener('load',function(){
+  bar('c1_m',['Mar 26','Apr 26','May 26'],[{color:AMBER,data:[745,576,737]}]);
+  bar('c1_q',['Q4 25','Q1 26','Q2 26'],[{color:AMBER,data:[1968,2150,1313]}]);
+  bar('c1_a',['2024','2025','2026'],[{color:AMBER,data:[9875,9422,3463]}]);
+  bar('c2_m',['Nov 25','Dec 25a','Dec 25b'],[{color:BLUE,data:[0,0,0]}]);
+  bar('c2_q',['Q3 25b','Q4 25b','Q4 25a'],[{color:BLUE,data:[0,0,0]}]);
+  bar('c2_a',['2025b','2026b','2026a'],[{color:BLUE,data:[0,0,0]}]);
+});
+</script>
+</body>
+</html>
