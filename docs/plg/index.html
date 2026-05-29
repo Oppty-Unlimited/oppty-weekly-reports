@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phoenix Lending Group — Weekly Report</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#f5f7fa;color:#1a1f2e;font-size:14px;line-height:1.5}
+.header{background:linear-gradient(135deg,#1a237e 0%,#283593 50%,#1565c0 100%);color:#fff;padding:32px 40px 28px}
+.header h1{font-size:26px;font-weight:700;letter-spacing:-0.5px;margin-bottom:4px}
+.header .sub{font-size:13px;opacity:0.75;margin-bottom:18px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:500;white-space:nowrap}
+.pill.warn{background:rgba(255,152,0,0.25);border-color:rgba(255,152,0,0.5)}
+.pill.alert{background:rgba(244,67,54,0.25);border-color:rgba(244,67,54,0.5)}
+.pill.ok{background:rgba(76,175,80,0.2);border-color:rgba(76,175,80,0.4)}
+.container{max-width:1100px;margin:0 auto;padding:24px 20px}
+.section{background:#fff;border-radius:10px;margin-bottom:20px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.07)}
+.section-header{padding:14px 20px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:8px}
+.section-header h2{font-size:14px;font-weight:600;color:#1a1f2e}
+.badge{display:inline-flex;align-items:center;justify-content:center;background:#e8eaf6;color:#3949ab;border-radius:10px;padding:2px 8px;font-size:11px;font-weight:600;min-width:22px}
+.badge.red{background:#ffebee;color:#c62828}
+.badge.green{background:#e8f5e9;color:#2e7d32}
+.badge.orange{background:#fff3e0;color:#e65100}
+.section-body{padding:16px 20px}
+
+/* Insights panel */
+.insights-panel{background:#1a1f2e;border-radius:10px;margin-bottom:20px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
+.insights-panel .section-header{background:#252b3b;border-bottom:1px solid #333;padding:14px 20px}
+.insights-panel .section-header h2{color:#fff}
+.insights-panel .badge{background:#3949ab;color:#c5cae9}
+.insight-card{padding:14px 20px;border-bottom:1px solid #2a3040;display:flex;align-items:flex-start;gap:12px}
+.insight-card:last-child{border-bottom:none}
+.insight-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;margin-top:1px}
+.insight-icon.blocker{background:rgba(244,67,54,0.15)}
+.insight-icon.action{background:rgba(255,152,0,0.15)}
+.insight-title{font-size:13px;font-weight:600;color:#e8eaf6;margin-bottom:3px}
+.insight-meta{font-size:11px;color:#8896a0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.insight-meta .tag{background:rgba(255,255,255,0.07);border-radius:4px;padding:1px 6px}
+.insight-meta .overdue{color:#ef5350;background:rgba(244,67,54,0.1);border-radius:4px;padding:1px 6px;font-weight:500}
+.insight-meta .assigned{color:#90caf9}
+.insight-related{font-size:11px;color:#64b5f6;margin-top:4px}
+.insight-related a{color:#64b5f6;text-decoration:none}
+
+/* Epic grid */
+.epic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;padding:16px 20px}
+.epic-card{border:1px solid #e8eaed;border-radius:8px;padding:14px;transition:box-shadow 0.2s}
+.epic-card:hover{box-shadow:0 2px 8px rgba(0,0,0,0.1)}
+.epic-card.overdue{border-left:3px solid #f44336}
+.epic-card.ontrack{border-left:3px solid #4caf50}
+.epic-name{font-size:13px;font-weight:600;color:#1a1f2e;margin-bottom:6px}
+.epic-due{font-size:11px;margin-bottom:8px}
+.epic-due.overdue{color:#e53935;font-weight:500}
+.epic-due.ok{color:#43a047}
+.case-pill{display:inline-block;background:#e8eaf6;color:#3949ab;border-radius:4px;padding:2px 8px;font-size:10px;font-weight:500;margin:2px 2px 0 0}
+
+/* Case table */
+.case-table{width:100%;border-collapse:collapse;font-size:12px}
+.case-table th{text-align:left;padding:8px 10px;font-size:10px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.5px;border-bottom:2px solid #f0f0f0;white-space:nowrap}
+.case-table td{padding:10px 10px;border-bottom:1px solid #f8f8f8;vertical-align:top}
+.case-table tr:last-child td{border-bottom:none}
+.case-table tr:hover td{background:#fafafa}
+.case-num{font-weight:700;color:#3949ab;white-space:nowrap}
+.case-subject{font-weight:500;color:#1a1f2e;line-height:1.3}
+.status-badge{display:inline-block;border-radius:4px;padding:2px 7px;font-size:10px;font-weight:600;white-space:nowrap}
+.status-pending{background:#fff3e0;color:#e65100}
+.status-todo{background:#f3e5f5;color:#6a1b9a}
+.status-ip{background:#e3f2fd;color:#1565c0}
+.hrs-chip{background:#f0f4ff;color:#3949ab;border-radius:4px;padding:2px 7px;font-size:11px;font-weight:500;white-space:nowrap}
+.next-step{font-size:11px;color:#4a5568;font-style:italic;margin-top:3px;line-height:1.35}
+.epic-tag{font-size:10px;background:#e8eaf6;color:#3949ab;border-radius:3px;padding:1px 5px;white-space:nowrap}
+.epic-tag.overdue{background:#ffebee;color:#c62828}
+
+/* Interactions */
+.interaction-card{border:1px solid #e8eaed;border-radius:8px;padding:14px 16px;margin-bottom:12px}
+.interaction-card:last-child{margin-bottom:0}
+.interaction-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:8px}
+.interaction-name{font-size:13px;font-weight:600;color:#1a1f2e}
+.interaction-meta{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:3px}
+.int-tag{font-size:10px;border-radius:4px;padding:2px 7px;font-weight:500}
+.int-type-req{background:#e3f2fd;color:#1565c0}
+.int-type-sup{background:#e8f5e9;color:#1b5e20}
+.int-status{background:#fff8e1;color:#f57f17;border-radius:4px;padding:2px 7px;font-size:10px;font-weight:500}
+.int-date{font-size:11px;color:#6b7280}
+.int-section{margin-top:8px}
+.int-section-label{font-size:10px;font-weight:600;color:#9e9e9e;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.int-section-body{font-size:12px;color:#374151;line-height:1.5}
+.int-section-body ul{padding-left:16px;margin:0}
+.int-section-body ul ul{margin-top:2px}
+.int-section-body li{margin-bottom:2px}
+.int-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+@media(max-width:600px){.int-grid{grid-template-columns:1fr}}
+
+/* Key results */
+.kr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.kr-card{border:1px solid #e8eaed;border-radius:8px;padding:14px;background:#fafbff}
+.kr-name{font-size:11px;font-weight:600;color:#6b7280;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:10px}
+.kr-row{display:flex;justify-content:space-between;align-items:baseline;padding:4px 0;border-bottom:1px solid #f0f0f0;font-size:12px}
+.kr-row:last-child{border-bottom:none}
+.kr-label{color:#9ca3af;font-size:11px}
+.kr-value{font-weight:700;color:#1a237e;font-size:14px}
+
+/* Indicators */
+.ind-card{border:1px solid #e8eaed;border-radius:8px;padding:14px 16px;margin-bottom:10px}
+.ind-card:last-child{margin-bottom:0}
+.ind-head{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;margin-bottom:8px}
+.ind-name{font-size:13px;font-weight:600;color:#1a1f2e;line-height:1.3}
+.ind-type{font-size:10px;border-radius:4px;padding:2px 7px;font-weight:600}
+.ind-perf{background:#e3f2fd;color:#1565c0}
+.ind-adopt{background:#f3e5f5;color:#6a1b9a}
+.ind-result{background:#e8f5e9;color:#1b5e20}
+.ind-presult{background:#fff3e0;color:#e65100}
+.ind-value{font-size:22px;font-weight:700;color:#1a237e;margin:4px 0}
+.ind-value.zero{color:#ef5350}
+.ind-value.clean{color:#43a047}
+.ind-sub{font-size:11px;color:#6b7280;margin-bottom:8px}
+.ind-children{margin-top:8px;border-top:1px solid #f0f0f0;padding-top:8px}
+.ind-child{display:flex;justify-content:space-between;align-items:center;padding:3px 0;font-size:11px;color:#4b5563}
+.ind-child-name{color:#6b7280}
+.ind-child-value{font-weight:600;color:#1a237e}
+.ind-results-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.ind-res-chip{background:#f0f4ff;border-radius:6px;padding:5px 10px;font-size:11px}
+.ind-res-chip .period{display:block;font-size:10px;color:#9ca3af;margin-bottom:1px}
+.ind-res-chip .val{font-weight:700;color:#3949ab}
+.ind-history{margin-top:10px}
+.ind-history-label{font-size:10px;font-weight:600;color:#9e9e9e;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.history-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.history-item{border:1px solid #e8eaed;border-radius:6px;padding:8px 10px;background:#fafbff}
+.history-item .period{font-size:10px;color:#9ca3af;margin-bottom:3px}
+.history-item .val{font-size:13px;font-weight:700;color:#1a237e}
+.history-item .count{font-size:10px;color:#b0b8c1;margin-top:1px}
+
+/* Charts */
+.chart-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.chart-card{border:1px solid #e8eaed;border-radius:8px;padding:14px}
+.chart-title{font-size:12px;font-weight:600;color:#374151;margin-bottom:12px}
+canvas{width:100%!important;height:160px!important}
+
+/* Gaps */
+.gap-card{border-left:3px solid #ffa726;background:#fff8f0;border-radius:0 8px 8px 0;padding:12px 16px;margin-bottom:10px}
+.gap-card:last-child{margin-bottom:0}
+.gap-title{font-size:12px;font-weight:600;color:#e65100;margin-bottom:4px}
+.gap-body{font-size:12px;color:#5d4037;line-height:1.45}
+
+/* Tags */
+.type-col{width:70px}
+.overdue-flag{color:#f44336;font-weight:600;font-size:10px}
+.sf-link{color:#3949ab;text-decoration:none;font-size:10px}
+.sf-link:hover{text-decoration:underline}
+.divider{border:none;border-top:1px solid #f0f0f0;margin:12px 0}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Phoenix Lending Group</h1>
+  <div class="sub">Weekly Performance Report &nbsp;·&nbsp; Generated May 29, 2026</div>
+  <div class="pills">
+    <span class="pill">2 Epics Active</span>
+    <span class="pill warn">1 Epic Overdue (Mar 31)</span>
+    <span class="pill">3 Cases In Progress</span>
+    <span class="pill">2 Pending Acceptance</span>
+    <span class="pill alert">2 Active Blockers</span>
+    <span class="pill">2 Upcoming Interactions</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Insights -->
+  <div class="insights-panel">
+    <div class="section-header">
+      <h2>&#9888; Insights &amp; Blockers</h2>
+      <span class="badge" style="background:#c62828;color:#fff">3</span>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon blocker">&#128683;</div>
+      <div style="flex:1">
+        <div class="insight-title">Application Email Sent (Pending Auth)</div>
+        <div class="insight-meta">
+          <span class="tag">Action Item</span>
+          <span class="tag" style="color:#90caf9">In Progress</span>
+          <span class="overdue">&#9888; Overdue — May 27</span>
+          <span class="assigned">Casey Ervin</span>
+        </div>
+        <div class="insight-related">Related: <a href="https://oppty.lightning.force.com/lightning/r/Project_Insight__c/a4dQn00000ASNdRIAX/view" target="_blank"># Leads, Application Email Sent</a></div>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon blocker">&#128683;</div>
+      <div style="flex:1">
+        <div class="insight-title">LSU Deployment</div>
+        <div class="insight-meta">
+          <span class="tag">Blocker</span>
+          <span class="tag" style="color:#ce93d8">To Do</span>
+          <span class="overdue">&#9888; Overdue — May 27</span>
+          <span class="assigned">Dylan Georges</span>
+        </div>
+        <div class="insight-related">Related: <a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000Cb0bIAC/view" target="_blank">PLG x Oppty: LSU Follow Up</a></div>
+      </div>
+    </div>
+
+    <div class="insight-card">
+      <div class="insight-icon action">&#9997;</div>
+      <div style="flex:1">
+        <div class="insight-title">Gusto Credentials</div>
+        <div class="insight-meta">
+          <span class="tag">Action Item</span>
+          <span class="tag" style="color:#ce93d8">To Do</span>
+          <span class="assigned">Tom Ross</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Epics -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Epics</h2>
+      <span class="badge">2</span>
+    </div>
+    <div class="epic-grid">
+      <div class="epic-card overdue">
+        <div class="epic-name">Lead Management &amp; Enhancements</div>
+        <div class="epic-due overdue">&#9888; Due Mar 31, 2026 — OVERDUE</div>
+        <span class="case-pill">PLG-2018</span>
+        <span class="case-pill">PLG-2023</span>
+      </div>
+      <div class="epic-card ontrack">
+        <div class="epic-name">LSU Requirements &amp; Development</div>
+        <div class="epic-due ok">Due Jun 30, 2026</div>
+        <span class="case-pill">PLG-2014</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cases -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Active Cases</h2>
+      <span class="badge">3</span>
+    </div>
+    <div class="section-body" style="padding:0">
+      <table class="case-table">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Subject</th>
+            <th>Status</th>
+            <th>Assignee</th>
+            <th>Hrs Rem.</th>
+            <th>Epic</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://oppty.lightning.force.com/lightning/r/Case/500Qn00000npVf5IAE/view" class="sf-link case-num">PLG-2018</a></td>
+            <td>
+              <div class="case-subject">Lead Follow Up Enhancements</div>
+              <div class="next-step">Next: Determine sender; setup Org-Wide emails; activate STF</div>
+            </td>
+            <td><span class="status-badge status-pending">Pending Acceptance</span></td>
+            <td style="white-space:nowrap;font-size:12px">Russell Martinez</td>
+            <td><span class="hrs-chip">0.0 hrs</span></td>
+            <td><span class="epic-tag overdue">Lead Mgmt &amp; Enhancements &#9888;</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://oppty.lightning.force.com/lightning/r/Case/500Qn00000oqxX3IAI/view" class="sf-link case-num">PLG-2023</a></td>
+            <td>
+              <div class="case-subject">Update Leads (Past SLA)</div>
+              <div class="next-step">Next: Oppty Assistant flows</div>
+            </td>
+            <td><span class="status-badge status-todo">To Do</span></td>
+            <td style="white-space:nowrap;font-size:12px">Russell Martinez</td>
+            <td><span class="hrs-chip">6.0 hrs</span></td>
+            <td><span class="epic-tag overdue">Lead Mgmt &amp; Enhancements &#9888;</span></td>
+          </tr>
+          <tr>
+            <td><a href="https://oppty.lightning.force.com/lightning/r/Case/500Qn00000n2Cp8IAE/view" class="sf-link case-num">PLG-2014</a></td>
+            <td>
+              <div class="case-subject">Send LSU (via Salesforce)</div>
+            </td>
+            <td><span class="status-badge status-pending">Pending Acceptance</span></td>
+            <td style="white-space:nowrap;font-size:12px">Casey Ervin</td>
+            <td><span class="hrs-chip">1.5 hrs</span></td>
+            <td><span class="epic-tag">LSU Requirements &amp; Dev</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Interactions -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Upcoming Interactions</h2>
+      <span class="badge">2</span>
+    </div>
+    <div class="section-body">
+
+      <div class="interaction-card">
+        <div class="interaction-head">
+          <div>
+            <div class="interaction-name">PLG x Oppty: LSU Follow Up</div>
+            <div class="interaction-meta">
+              <span class="int-tag int-type-req">Requirements</span>
+              <span class="int-status">To be Scheduled</span>
+              <span class="int-date">&#128197; Jun 6, 2026</span>
+            </div>
+          </div>
+          <a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn000000Cb0bIAC/view" class="sf-link" target="_blank">View &#8599;</a>
+        </div>
+
+        <div class="int-grid">
+          <div>
+            <div class="int-section">
+              <div class="int-section-label">Agenda</div>
+              <div class="int-section-body"><ul><li>Review updated LSU process with operations team</li><li>Gather feedback from ops team on system functionality</li><li>Finalize implementation process before involving loan officers</li><li>Plan future session to include loan officers once ops feedback is incorporated</li><li>Review Dashboard for Dylan to oversee delivery<ul><li>LSU Needed — identifies Arizona purchases without an LSU sent this week</li><li>Disclosures Needed — identifies Disclosure requests that have not been sent</li></ul></li></ul></div>
+            </div>
+          </div>
+          <div>
+            <div class="int-section">
+              <div class="int-section-label">Expected Outcomes</div>
+              <div class="int-section-body"><ul><li>Review updated LSU process with operations team</li><li>Gather feedback from ops team on system functionality</li><li>Finalize implementation process before involving loan officers</li><li>Plan future session to include loan officers once ops feedback is incorporated</li></ul></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="int-section" style="margin-top:10px">
+          <div class="int-section-label">Decisions Made</div>
+          <div class="int-section-body"><ul><li>Operations staff including Margaret, Julie, and Dylan will be the primary users of the LSU system</li><li>Weekly workflow will be implemented for sending LSUs</li><li>Interest rate field will default to "market" rather than specific percentages</li><li>Follow-up Zoom meeting will be scheduled with key operations personnel before involving loan officers</li><li>Margaret will handle Eduardo, Ashley, and Gabriel's loans; Julie will manage Courtney's loans</li><li>Rochelle and Angie will be included for the new Justin Volpone branch</li></ul></div>
+        </div>
+
+        <div class="int-section" style="margin-top:10px">
+          <div class="int-section-label">Blockers</div>
+          <div class="int-section-body"><ul><li>Loan officer name discrepancies in the system</li><li>Missing city/zip information on property addresses</li><li>Manual email input requirement</li><li>Ashley's signature appearing on documents created by Tom</li></ul></div>
+        </div>
+      </div>
+
+      <div class="interaction-card">
+        <div class="interaction-head">
+          <div>
+            <div class="interaction-name">PLG Weekly Realtor Communication Requirements</div>
+            <div class="interaction-meta">
+              <span class="int-tag int-type-sup">Support</span>
+              <span class="int-status">To be Scheduled</span>
+              <span class="int-date">&#128197; Jun 17, 2026</span>
+            </div>
+          </div>
+          <a href="https://oppty.lightning.force.com/lightning/r/Project_Interaction__c/a8qQn0000004R4rIAE/view" class="sf-link" target="_blank">View &#8599;</a>
+        </div>
+        <div class="int-section">
+          <div class="int-section-label">Agenda</div>
+          <div class="int-section-body"><ul><li>Discuss requirements for Weekly realtor communication<ul><li>What info gets sent?</li><li>Is the realtor contact the only one who gets updates?</li><li>How does Courtney communicate updates?</li><li>How can we make things easier for Courtney to update?</li></ul></li><li>Additional Reports from Julia/Gina?<ul><li># Leads by Realtor Contact? (monthly, weekly, annually)</li><li>Revenue Amount by Realtor Contact (Monthly, weekly, annually)</li></ul></li></ul></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Key Results -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Key Results</h2>
+      <span class="badge">3</span>
+    </div>
+    <div class="section-body">
+      <div class="kr-grid">
+        <div class="kr-card">
+          <div class="kr-name">% Leads Converted</div>
+          <div class="kr-row"><span class="kr-label">Monthly</span><span class="kr-value">28.57%</span></div>
+          <div class="kr-row"><span class="kr-label">Quarterly</span><span class="kr-value">46.43%</span></div>
+          <div class="kr-row"><span class="kr-label">Annual</span><span class="kr-value">46.85%</span></div>
+        </div>
+        <div class="kr-card">
+          <div class="kr-name">Amt Closed Opps / Sales User</div>
+          <div class="kr-row"><span class="kr-label">Monthly</span><span class="kr-value" style="font-size:12px">$22,231,163</span></div>
+          <div class="kr-row"><span class="kr-label">Quarterly</span><span class="kr-value" style="font-size:12px">$39,391,057</span></div>
+          <div class="kr-row"><span class="kr-label">Annual</span><span class="kr-value" style="font-size:12px">$100,847,475</span></div>
+        </div>
+        <div class="kr-card">
+          <div class="kr-name">Compensation %</div>
+          <div class="kr-row"><span class="kr-label">Monthly</span><span class="kr-value">0.89%</span></div>
+          <div class="kr-row"><span class="kr-label">Quarterly</span><span class="kr-value">1.03%</span></div>
+          <div class="kr-row"><span class="kr-label">Annual</span><span class="kr-value">1.16%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Performance Indicators -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Performance Indicators</h2>
+      <span class="badge">5</span>
+    </div>
+    <div class="section-body">
+
+      <div class="ind-card">
+        <div class="ind-head">
+          <div>
+            <div class="ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000GmjpIAC/view" class="sf-link" target="_blank"># Open Leads</a></div>
+            <span class="ind-type ind-perf">Performance</span>
+          </div>
+          <div class="ind-value">164</div>
+        </div>
+        <div class="ind-sub">Active open leads in pipeline</div>
+        <div class="ind-children">
+          <div class="ind-child"><span class="ind-child-name">Courtney Crowder</span><span class="ind-child-value">48</span></div>
+          <div class="ind-child"><span class="ind-child-name">Eduardo Padron</span><span class="ind-child-value">28</span></div>
+          <div class="ind-child"><span class="ind-child-name">Tom Ross</span><span class="ind-child-value">3</span></div>
+          <div class="ind-child"><span class="ind-child-name">Ashley Mason</span><span class="ind-child-value">0</span></div>
+        </div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-head">
+          <div>
+            <div class="ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000N9CHIA0/view" class="sf-link" target="_blank"># Open Leads, Past SLA</a></div>
+            <span class="ind-type ind-perf">Performance</span>
+          </div>
+          <div class="ind-value clean">0 &#10003;</div>
+        </div>
+        <div class="ind-sub" style="color:#2e7d32">All 164 open leads are within SLA — no overdue leads</div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-head">
+          <div>
+            <div class="ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000O93lIAC/view" class="sf-link" target="_blank"># Opportunities (LSU's to be Sent)</a></div>
+            <span class="ind-type ind-perf">Performance</span>
+          </div>
+          <div class="ind-value" style="color:#e65100">65</div>
+        </div>
+        <div class="ind-sub">Opportunities with pending LSU sends (1,694 total opportunities)</div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-head">
+          <div>
+            <div class="ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000MfvlIAC/view" class="sf-link" target="_blank">Amount, Open Opportunitys (Open)</a></div>
+            <span class="ind-type ind-perf">Performance</span>
+          </div>
+          <div class="ind-value" style="font-size:18px">$608M</div>
+        </div>
+        <div class="ind-sub">Total open opportunity pipeline: $608,263,145.22</div>
+        <div class="ind-children">
+          <div class="ind-child"><span class="ind-child-name">Courtney Crowder</span><span class="ind-child-value">$289,805,700.99</span></div>
+          <div class="ind-child"><span class="ind-child-name">Tom Ross</span><span class="ind-child-value">$161,435,539.70</span></div>
+          <div class="ind-child"><span class="ind-child-name">Ashley Mason</span><span class="ind-child-value">$80,107,605.89</span></div>
+          <div class="ind-child"><span class="ind-child-name">Eduardo Padron</span><span class="ind-child-value">$32,264,748.00</span></div>
+        </div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-head">
+          <div>
+            <div class="ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000Mz4rIAC/view" class="sf-link" target="_blank">Conversion %, Leads, Application Email Sent</a></div>
+            <span class="ind-type ind-presult">Performance Result</span>
+          </div>
+          <div class="ind-value zero">0%</div>
+        </div>
+        <div class="ind-sub" style="color:#c62828">&#9888; No conversions recorded from Application Email leads — blocked workflow (see Insights)</div>
+        <div class="ind-results-row">
+          <div class="ind-res-chip"><span class="period">Monthly (May)</span><span class="val">0%</span></div>
+          <div class="ind-res-chip"><span class="period">Quarterly (Q2)</span><span class="val">0%</span></div>
+          <div class="ind-res-chip"><span class="period">Annual 2026</span><span class="val">0%</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Adoption & Result Indicators -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Adoption &amp; Result Indicators</h2>
+      <span class="badge">4</span>
+    </div>
+    <div class="section-body">
+
+      <div class="ind-card">
+        <div class="ind-head">
+          <div>
+            <div class="ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000LOk5IAG/view" class="sf-link" target="_blank"># Email Messages (Realtor Update)</a></div>
+            <span class="ind-type ind-adopt">Adoption</span>
+          </div>
+          <div class="ind-value">2</div>
+        </div>
+        <div class="ind-sub">Last result: 2 &nbsp;·&nbsp; 49,124 records in scope</div>
+        <div style="font-size:11px;color:#e65100;margin-top:4px">&#9888; No historical results — indicator not yet reporting trend data</div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-head">
+          <div>
+            <div class="ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000KXe9IAG/view" class="sf-link" target="_blank">% Opportunities Closed</a></div>
+            <span class="ind-type ind-adopt">Adoption / Pull Through</span>
+          </div>
+          <div class="ind-value">28.06%</div>
+        </div>
+        <div class="ind-sub">Current result &nbsp;·&nbsp; 2,676 records in scope</div>
+        <div class="ind-history">
+          <div class="ind-history-label">Monthly</div>
+          <div class="history-grid">
+            <div class="history-item"><div class="period">May 2026</div><div class="val">19.53%</div><div class="count">297 records</div></div>
+            <div class="history-item"><div class="period">Apr 2026</div><div class="val">12.8%</div><div class="count">164 records</div></div>
+            <div class="history-item"><div class="period">Mar 2026</div><div class="val">15.17%</div><div class="count">145 records</div></div>
+          </div>
+        </div>
+        <div class="ind-history" style="margin-top:10px">
+          <div class="ind-history-label">Quarterly</div>
+          <div class="history-grid">
+            <div class="history-item"><div class="period">Q2 2026</div><div class="val">17.14%</div><div class="count">461 records</div></div>
+            <div class="history-item"><div class="period">Q1 2026</div><div class="val">21.77%</div><div class="count">496 records</div></div>
+            <div class="history-item"><div class="period">Q4 2025</div><div class="val">32.43%</div><div class="count">222 records</div></div>
+          </div>
+        </div>
+        <div class="ind-history" style="margin-top:10px">
+          <div class="ind-history-label">Annual</div>
+          <div class="history-grid">
+            <div class="history-item"><div class="period">2026 YTD</div><div class="val">19.54%</div><div class="count">957 records</div></div>
+            <div class="history-item"><div class="period">2025</div><div class="val">31.71%</div><div class="count">1,653 records</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-head">
+          <div>
+            <div class="ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000KXSrIAO/view" class="sf-link" target="_blank">Conversion %, Leads</a></div>
+            <span class="ind-type ind-adopt">Adoption / Pull Through</span>
+          </div>
+          <div class="ind-value">42.26%</div>
+        </div>
+        <div class="ind-sub">Current result &nbsp;·&nbsp; 2,712 records in scope</div>
+        <div class="ind-history">
+          <div class="ind-history-label">Monthly</div>
+          <div class="history-grid">
+            <div class="history-item"><div class="period">May 2026</div><div class="val">28.57%</div><div class="count">21 records</div></div>
+            <div class="history-item"><div class="period">Apr 2026</div><div class="val">57.14%</div><div class="count">35 records</div></div>
+            <div class="history-item"><div class="period">Mar 2026</div><div class="val">56.82%</div><div class="count">44 records</div></div>
+          </div>
+        </div>
+        <div class="ind-history" style="margin-top:10px">
+          <div class="ind-history-label">Quarterly</div>
+          <div class="history-grid">
+            <div class="history-item"><div class="period">Q2 2026</div><div class="val">46.43%</div><div class="count">56 records</div></div>
+            <div class="history-item"><div class="period">Q1 2026</div><div class="val">47.13%</div><div class="count">87 records</div></div>
+            <div class="history-item"><div class="period">Q4 2025</div><div class="val">12.3%</div><div class="count">176 records</div></div>
+          </div>
+        </div>
+        <div class="ind-history" style="margin-top:10px">
+          <div class="ind-history-label">Annual</div>
+          <div class="history-grid">
+            <div class="history-item"><div class="period">2026 YTD</div><div class="val">46.85%</div><div class="count">143 records</div></div>
+            <div class="history-item"><div class="period">2025</div><div class="val">40.87%</div><div class="count">2,611 records</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ind-card">
+        <div class="ind-head">
+          <div>
+            <div class="ind-name"><a href="https://oppty.lightning.force.com/lightning/r/Indicator__c/a6jQn000000HzNFIA0/view" class="sf-link" target="_blank">Amount, Closed Won Opportunitys</a></div>
+            <span class="ind-type ind-result">Result</span>
+          </div>
+          <div class="ind-value" style="font-size:16px">$358.7M</div>
+        </div>
+        <div class="ind-sub">Last result: $358,685,309.80 &nbsp;·&nbsp; 752 records</div>
+        <div class="ind-children" style="margin-bottom:10px">
+          <div class="ind-child"><span class="ind-child-name">Courtney Crowder</span><span class="ind-child-value">$183,364,045.00</span></div>
+          <div class="ind-child"><span class="ind-child-name">Tom Ross</span><span class="ind-child-value">$93,322,882.30</span></div>
+          <div class="ind-child"><span class="ind-child-name">Ashley Mason</span><span class="ind-child-value">$44,973,874.00</span></div>
+          <div class="ind-child"><span class="ind-child-name">Eduardo Padron</span><span class="ind-child-value">$21,184,116.50</span></div>
+        </div>
+        <div class="ind-history">
+          <div class="ind-history-label">Monthly</div>
+          <div class="history-grid">
+            <div class="history-item"><div class="period">May 2026</div><div class="val">$22.2M</div><div class="count">40 records</div></div>
+            <div class="history-item"><div class="period">Apr 2026</div><div class="val">$17.2M</div><div class="count">39 records</div></div>
+            <div class="history-item"><div class="period">Mar 2026</div><div class="val">$28.4M</div><div class="count">57 records</div></div>
+          </div>
+        </div>
+        <div class="ind-history" style="margin-top:10px">
+          <div class="ind-history-label">Quarterly</div>
+          <div class="history-grid">
+            <div class="history-item"><div class="period">Q2 2026</div><div class="val">$39.4M</div><div class="count">79 records</div></div>
+            <div class="history-item"><div class="period">Q1 2026</div><div class="val">$61.5M</div><div class="count">128 records</div></div>
+            <div class="history-item"><div class="period">Q4 2025</div><div class="val">$54.4M</div><div class="count">81 records</div></div>
+          </div>
+        </div>
+        <div class="ind-history" style="margin-top:10px">
+          <div class="ind-history-label">Annual</div>
+          <div class="history-grid">
+            <div class="history-item"><div class="period">2026 YTD</div><div class="val">$100.8M</div><div class="count">207 records</div></div>
+            <div class="history-item"><div class="period">2025</div><div class="val">$156.8M</div><div class="count">289 records</div></div>
+            <div class="history-item"><div class="period">2024</div><div class="val">$90.8M</div><div class="count">186 records</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Trend Charts</h2>
+    </div>
+    <div class="section-body">
+      <div class="chart-grid">
+
+        <div class="chart-card">
+          <div class="chart-title">% Opportunities Closed</div>
+          <canvas id="chartOppsClosed"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-title">Conversion %, Leads</div>
+          <canvas id="chartConvLeads"></canvas>
+        </div>
+
+        <div class="chart-card">
+          <div class="chart-title">Amount, Closed Won Opportunitys ($M)</div>
+          <canvas id="chartClosedWon"></canvas>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Gaps -->
+  <div class="section">
+    <div class="section-header">
+      <h2>Gaps &amp; Recommendations</h2>
+    </div>
+    <div class="section-body">
+
+      <div class="gap-card">
+        <div class="gap-title">Gap 1 — Active User Payload</div>
+        <div class="gap-body">Active user data not yet available in payload. Individual user activity context cannot be rendered until <code>activeUsers[]</code> is populated by the weekly service.</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-title">Gap 2 — Application Email Sent Conversion Blocked</div>
+        <div class="gap-body">Conversion %, Leads, Application Email Sent is 0% across all periods (monthly, quarterly, annual). This is directly tied to the "Application Email Sent (Pending Auth)" blocker assigned to Casey Ervin (overdue May 27). Until authentication is resolved and the email workflow is activated, this result indicator will remain at zero.</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-title">Gap 3 — # Email Messages (Realtor Update) Not Trending</div>
+        <div class="gap-body">The Realtor Update email indicator has a current result of 2 but no monthly, quarterly, or annual historical results. This indicator is not yet generating trend data. Consider reviewing the result cadence configuration or confirming the indicator is actively being tracked per the upcoming Realtor Communication Requirements meeting (Jun 17).</div>
+      </div>
+
+      <div class="gap-card">
+        <div class="gap-title">Gap 4 — LSU Deployment Blocker</div>
+        <div class="gap-body">LSU Deployment (Dylan Georges) is overdue since May 27 and blocking PLG x Oppty: LSU Follow Up interaction. PLG-2014 (Send LSU via Salesforce) remains in Pending Acceptance with 1.5 hrs remaining. Action required to unblock the deployment before the Jun 6 interaction.</div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<script>
+(function(){
+  function drawBarChart(canvasId, labels, datasets, isMoney){
+    var canvas = document.getElementById(canvasId);
+    if(!canvas) return;
+    var ctx = canvas.getContext('2d');
+    var dpr = window.devicePixelRatio || 1;
+    var W = canvas.offsetWidth || 300;
+    var H = 160;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.scale(dpr, dpr);
+
+    var colors = ['#3949ab','#1e88e5','#43a047'];
+    var pad = {top:16, right:12, bottom:44, left: isMoney ? 56 : 42};
+    var chartW = W - pad.left - pad.right;
+    var chartH = H - pad.top - pad.bottom;
+
+    var groupCount = labels.length;
+    var seriesCount = datasets.length;
+    var groupW = chartW / groupCount;
+    var barW = Math.min((groupW / (seriesCount + 1)) * 0.9, 28);
+
+    var allVals = [];
+    datasets.forEach(function(ds){ ds.data.forEach(function(v){ allVals.push(v); }); });
+    var maxVal = Math.max.apply(null, allVals) * 1.15 || 1;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Grid lines
+    ctx.strokeStyle = '#f0f0f0';
+    ctx.lineWidth = 1;
+    for(var i=0;i<=4;i++){
+      var y = pad.top + chartH - (chartH * i / 4);
+      ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(pad.left + chartW, y); ctx.stroke();
+      var lbl = (maxVal * i / 4);
+      ctx.fillStyle = '#b0b8c1';
+      ctx.font = '9px Inter,sans-serif';
+      ctx.textAlign = 'right';
+      var lblStr = isMoney ? ('$'+(lbl/1000000).toFixed(1)+'M') : (lbl.toFixed(1)+'%');
+      ctx.fillText(lblStr, pad.left - 4, y + 3);
+    }
+
+    // Bars
+    labels.forEach(function(label, gi){
+      var gx = pad.left + gi * groupW + groupW / 2;
+      var totalW = seriesCount * barW + (seriesCount - 1) * 2;
+      var startX = gx - totalW / 2;
+
+      datasets.forEach(function(ds, si){
+        var val = ds.data[gi];
+        var barH = (val / maxVal) * chartH;
+        var x = startX + si * (barW + 2);
+        var y = pad.top + chartH - barH;
+        ctx.fillStyle = colors[si];
+        ctx.beginPath();
+        ctx.roundRect ? ctx.roundRect(x, y, barW, barH, [3,3,0,0]) : ctx.rect(x, y, barW, barH);
+        ctx.fill();
+
+        // Value label
+        ctx.fillStyle = '#374151';
+        ctx.font = 'bold 9px Inter,sans-serif';
+        ctx.textAlign = 'center';
+        var vStr = isMoney ? ('$'+(val/1000000).toFixed(1)+'M') : (val.toFixed(1)+'%');
+        if(barH > 14){
+          ctx.fillText(vStr, x + barW/2, y - 2);
+        }
+      });
+
+      // X label
+      ctx.fillStyle = '#6b7280';
+      ctx.font = '9px Inter,sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText(label, gx, H - pad.bottom + 14);
+    });
+
+    // Legend
+    var legY = H - 10;
+    var legX = pad.left;
+    datasets.forEach(function(ds, si){
+      ctx.fillStyle = colors[si];
+      ctx.fillRect(legX, legY - 6, 8, 8);
+      ctx.fillStyle = '#6b7280';
+      ctx.font = '9px Inter,sans-serif';
+      ctx.textAlign = 'left';
+      ctx.fillText(ds.label, legX + 11, legY + 1);
+      legX += ctx.measureText(ds.label).width + 24;
+    });
+  }
+
+  window.addEventListener('load', function(){
+    drawBarChart('chartOppsClosed',
+      ['Mar','Apr','May','Q1','Q2','Q4\'25','2025','2026'],
+      [
+        {label:'Monthly', data:[15.17,12.8,19.53,0,0,0,0,0]},
+        {label:'Quarterly', data:[0,0,0,21.77,17.14,32.43,0,0]},
+        {label:'Annual', data:[0,0,0,0,0,0,31.71,19.54]}
+      ], false);
+
+    drawBarChart('chartConvLeads',
+      ['Mar','Apr','May','Q1','Q2','Q4\'25','2025','2026'],
+      [
+        {label:'Monthly', data:[56.82,57.14,28.57,0,0,0,0,0]},
+        {label:'Quarterly', data:[0,0,0,47.13,46.43,12.3,0,0]},
+        {label:'Annual', data:[0,0,0,0,0,0,40.87,46.85]}
+      ], false);
+
+    drawBarChart('chartClosedWon',
+      ['Mar','Apr','May','Q1','Q2','Q4\'25','2025','2026'],
+      [
+        {label:'Monthly', data:[28373252,17159894,22231163,0,0,0,0,0]},
+        {label:'Quarterly', data:[0,0,0,61456418,39391057,54352179,0,0]},
+        {label:'Annual', data:[0,0,0,0,0,0,156795904.5,100847475.3]}
+      ], true);
+  });
+})();
+</script>
+
+</body>
+</html>
